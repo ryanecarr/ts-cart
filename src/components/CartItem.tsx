@@ -1,6 +1,6 @@
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import storeItems from '../data/items.json';
-import { Button, Stack } from 'react-bootstrap';
+import { Stack } from 'react-bootstrap';
 import formatCurrency from '../utilities/formatCurrency';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
