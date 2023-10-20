@@ -2,7 +2,7 @@ import { Button, Card } from 'react-bootstrap';
 import formatCurrency from '../utilities/formatCurrency';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faPlus, faMinus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 type StoreItemProps = {
   id: number;
@@ -44,7 +44,10 @@ const StoreItem = ({ id, brand, product, price, imgUrl }: StoreItemProps) => {
         </Card.Title>
         <div className='mt-auto'>
           {quantity === 0 ? (
-            <Button className='w-100' onClick={() => increaseCartQuantity(id)}>
+            <Button
+              className='w-100 btn-sm'
+              onClick={() => increaseCartQuantity(id)}
+            >
               <FontAwesomeIcon icon={faCartPlus} />
               <span className='m-2'>add to cart</span>
             </Button>
@@ -57,13 +60,21 @@ const StoreItem = ({ id, brand, product, price, imgUrl }: StoreItemProps) => {
                 className='d-flex align-items-center justify-content-center'
                 style={{ gap: '.5rem' }}
               >
-                <Button onClick={() => decreaseCartQuantity(id)}>
+                <Button
+                  variant='light'
+                  className='rounded-circle btn-sm'
+                  onClick={() => decreaseCartQuantity(id)}
+                >
                   <FontAwesomeIcon icon={faMinus} />
                 </Button>
                 <div>
-                  <span className='fs-3'>{quantity}</span> in cart
+                  <span className='fs-6'>{quantity}</span>
                 </div>
-                <Button onClick={() => increaseCartQuantity(id)}>
+                <Button
+                  variant='light'
+                  className='rounded-circle btn-sm'
+                  onClick={() => increaseCartQuantity(id)}
+                >
                   <FontAwesomeIcon icon={faPlus} />
                 </Button>
               </div>
@@ -71,8 +82,10 @@ const StoreItem = ({ id, brand, product, price, imgUrl }: StoreItemProps) => {
                 onClick={() => removeFromCart(id)}
                 variant='danger'
                 size='sm'
+                className='mt-2 w-100'
               >
-                Remove
+                <FontAwesomeIcon icon={faTrash} />
+                <span className='m-2'>remove</span>
               </Button>
             </div>
           )}
