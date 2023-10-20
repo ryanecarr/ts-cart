@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "brand": "HOKA ONE ONE",
+    "product": "Speedgoat 5 Trail-Running Shoes",
+    "price": 155,
+    "imgUrl": "https://www.rei.com/media/79594e10-1097-4df8-8e15-1683ba7c8765.jpg"
+  },
+  {
+    "id": 2,
+    "brand": "Salomon",
+    "product": "Active Skin 8 Hydration Vest",
+    "price": 110,
+    "imgUrl": "https://www.rei.com/media/938a94dc-6d6c-43f6-9078-548dc83d464f.jpg"
+  },
+  {
+    "id": 3,
+    "brand": "Injinji",
+    "product": "Trail Midweight Crew Socks",
+    "price": 17,
+    "imgUrl": "https://www.rei.com/media/07f6e9aa-5507-422a-9933-b257e9e67fb8.jpg"
+  },
+  {
+    "id": 4,
+    "brand": "Garmin",
+    "product": "Forerunner 265",
+    "price": 450,
+    "imgUrl": "https://www.rei.com/media/89cc3e3e-f172-43d6-a566-d6a4e3380387.jpg"
+  }
+]
