@@ -1,8 +1,14 @@
 import { Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import formatCurrency from '../utilities/formatCurrency';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus, faPlus, faMinus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCartPlus,
+  faPlus,
+  faMinus,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 
 type StoreItemProps = {
   id: number;
@@ -24,72 +30,33 @@ const StoreItem = ({ id, brand, product, price, imgUrl }: StoreItemProps) => {
 
   return (
     <Card className='h-100'>
-      <Card.Img
-        variant='top'
-        src={imgUrl}
-        height='250px'
-        style={{ objectFit: 'contain', padding: '2em' }}
-      />
+      <Link to={`/store/${id}`}>
+        <Card.Img
+          variant='top'
+          src={imgUrl}
+          height='250px'
+          style={{ objectFit: 'contain', padding: '2em' }}
+        />
+      </Link>
       <Card.Body className='d-flex flex-column'>
-        <Card.Title className='d-flex justify-content-between align-items-baseline mb-4'>
+        <Card.Title className='d-flex flex-column align-items-center mb-4 fs-6'>
           <div>
-            <div>
-              <span className='fs-3'>{brand}</span>
-            </div>
-            <div>
-              <span className='fs-6'>{product}</span>
-            </div>
-          </div>
-          <span className='ms-2 text-muted'>{formatCurrency(price)}</span>
-        </Card.Title>
-        <div className='mt-auto'>
-          {quantity === 0 ? (
-            <Button
-              className='w-100 btn-sm'
-              onClick={() => increaseCartQuantity(id)}
+            <Link
+              className='lh-sm text-center text-decoration-none'
+              to={`/store/${id}`}
             >
-              <FontAwesomeIcon icon={faCartPlus} />
-              <span className='m-2'>add to cart</span>
-            </Button>
-          ) : (
-            <div
-              className='d-flex align-items-center flex-column'
-              style={{ gap: '.5rem' }}
-            >
-              <div
-                className='d-flex align-items-center justify-content-center'
-                style={{ gap: '.5rem' }}
-              >
-                <Button
-                  variant='light'
-                  className='rounded-circle btn-sm'
-                  onClick={() => decreaseCartQuantity(id)}
-                >
-                  <FontAwesomeIcon icon={faMinus} />
-                </Button>
-                <div>
-                  <span className='fs-6'>{quantity}</span>
-                </div>
-                <Button
-                  variant='light'
-                  className='rounded-circle btn-sm'
-                  onClick={() => increaseCartQuantity(id)}
-                >
-                  <FontAwesomeIcon icon={faPlus} />
-                </Button>
+              <div>
+                <span className='text-dark'>{brand}</span>
               </div>
-              <Button
-                onClick={() => removeFromCart(id)}
-                variant='danger'
-                size='sm'
-                className='mt-2 w-100'
-              >
-                <FontAwesomeIcon icon={faTrash} />
-                <span className='m-2'>remove</span>
-              </Button>
-            </div>
-          )}
-        </div>
+              <div>
+                <span className='text-black-50'>{product}</span>
+              </div>
+            </Link>
+          </div>
+          <div className='mt-3'>
+            <span className='text-black-50'>{formatCurrency(price)}</span>
+          </div>
+        </Card.Title>
       </Card.Body>
     </Card>
   );

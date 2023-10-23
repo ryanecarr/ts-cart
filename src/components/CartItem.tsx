@@ -38,7 +38,7 @@ const CartItem = ({ id, quantity }: CartItemProps) => {
             className='text-muted'
             style={{ fontSize: '0.75rem', fontWeight: 'bold' }}
           >
-            x {quantity}
+            qty: {quantity}
           </span>
         )}
         <div>{formatCurrency(item?.price)}</div>

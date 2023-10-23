@@ -20,7 +20,7 @@ type ShoppingCartContext = {
   openCart: () => void;
   closeCart: () => void;
   getItemQuantity: (id: number) => number;
-  increaseCartQuantity: (id: number) => void;
+  increaseCartQuantity: (id: number, qty: number) => void;
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
   cartQuantity: number;
@@ -64,14 +64,14 @@ export const ShoppingCartProvider = ({
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   };
 
-  const increaseCartQuantity = (id: number) => {
+  const increaseCartQuantity = (id: number, qty: number) => {
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id) == null) {
-        return [...currItems, { id, quantity: 1 }];
+        return [...currItems, { id, quantity: qty }];
       } else {
         return currItems.map((item) => {
           if (item.id === id) {
-            return { ...item, quantity: item.quantity + 1 };
+            return { ...item, quantity: item.quantity + qty };
           } else {
             return item;
           }
