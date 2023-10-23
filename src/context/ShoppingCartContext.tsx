@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useContext, useState } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+} from 'react';
 import ShoppingCart from '../components/ShoppingCart';
 
 type ShoppingCartProviderProps = {
@@ -31,7 +37,15 @@ export const ShoppingCartProvider = ({
   children,
 }: ShoppingCartProviderProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    let cart;
+    try {
+      cart = JSON.parse(localStorage.getItem('cart'));
+    } catch {
+      // errors
+    }
+    return cart || [];
+  });
 
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
@@ -87,6 +101,11 @@ export const ShoppingCartProvider = ({
       return currItems.filter((item) => item.id !== id);
     });
   };
+
+  useEffect(
+    () => localStorage.setItem('cart', JSON.stringify(cartItems)),
+    [cartItems]
+  );
 
   return (
     <ShoppingCartContext.Provider
