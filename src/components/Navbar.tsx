@@ -1,11 +1,12 @@
 import { Button, Container, Nav, Navbar as NavbarBs } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 
 const Navbar = () => {
   const { openCart, cartQuantity } = useShoppingCart();
+  const navigate = useNavigate();
   return (
     <>
       <NavbarBs sticky='top' className='bg-white shadow-sm mb-3'>
@@ -25,7 +26,7 @@ const Navbar = () => {
             style={{ width: '3rem', height: '3rem', position: 'relative' }}
             variant='outline-primary'
             className='rounded-circle'
-            onClick={openCart}
+            onClick={() => navigate('/cart')}
             disabled={cartQuantity === 0}
           >
             <FontAwesomeIcon icon={faCartShopping} />

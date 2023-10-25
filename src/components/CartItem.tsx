@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import storeItems from '../data/items.json';
-import { Stack } from 'react-bootstrap';
+import { Stack, Card } from 'react-bootstrap';
 import formatCurrency from '../utilities/formatCurrency';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Quantity from './Quantity';
 
 type CartItemProps = {
   id: number;
@@ -11,46 +13,51 @@ type CartItemProps = {
 };
 
 const CartItem = ({ id, quantity }: CartItemProps) => {
-  const { removeFromCart } = useShoppingCart();
+  const { removeFromCart, increaseCartQuantity, decreaseCartQuantity } =
+    useShoppingCart();
+
+  const handleQuantityIncrease = () => {
+    increaseCartQuantity(id, 1);
+  };
+
+  const handleQuantityDecrease = () => {
+    decreaseCartQuantity(id);
+  };
 
   const item = storeItems.find((item) => item.id === id);
 
   if (item === null) return null;
 
   return (
-    <Stack
-      direction='horizontal'
-      gap={0}
-      className='d-flex align-items-center'
-      style={{ fontSize: '0.90rem' }}
-    >
-      <div
-        className='d-flex justify-content-center pe-3'
-        style={{ width: '20%' }}
-      >
-        <img src={item?.imgUrl} style={{ height: '40px' }} />
-      </div>
-      <div className='me-auto'>
-        <div style={{ fontWeight: 'bold' }}>{item?.brand}</div>
-        <div>{item?.product}</div>
-        {quantity > 1 && (
-          <span
-            className='text-muted'
-            style={{ fontSize: '0.75rem', fontWeight: 'bold' }}
-          >
-            qty: {quantity}
-          </span>
-        )}
-        <div>{formatCurrency(item?.price)}</div>
-      </div>
-      <div className='px-2'>{formatCurrency(item?.price * quantity)}</div>
-      <div style={{ cursor: 'pointer' }}>
+    <Card className='shadow-sm'>
+      <Card.Body>
+        <Stack gap={4} direction='horizontal'>
+          <div>
+            <img src={item?.imgUrl} style={{ height: '30px' }} />
+          </div>
+          <div className='me-auto' style={{ width: '40%' }}>
+            <div style={{ fontWeight: 'bold' }}>{item?.brand}</div>
+            <div>{item?.product}</div>
+          </div>
+          {/*           <div className='px-2 mx-auto'>{quantity > 1 ? quantity : '1'}</div> */}
+          <Quantity
+            quantity={quantity}
+            handleQuantityIncrease={handleQuantityIncrease}
+            handleQuantityDecrease={handleQuantityDecrease}
+          />
+          <div className='px-2 mx-auto'>{formatCurrency(item?.price || 0)}</div>
+          <div className='px-2'>
+            {formatCurrency((item?.price || 0) * quantity)}
+          </div>
+          {/*       <div style={{ cursor: 'pointer' }}>
         <FontAwesomeIcon
           icon={faTrash}
-          onClick={() => removeFromCart(item?.id)}
+          onClick={() => removeFromCart(item?.id || 0)}
         />
-      </div>
-    </Stack>
+      </div> */}
+        </Stack>
+      </Card.Body>
+    </Card>
   );
 };
 

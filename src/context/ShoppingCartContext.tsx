@@ -6,6 +6,7 @@ import {
   useEffect,
 } from 'react';
 import ShoppingCart from '../components/ShoppingCart';
+import StoreItems from '../data/items.json';
 
 type ShoppingCartProviderProps = {
   children: ReactNode;
@@ -24,6 +25,7 @@ type ShoppingCartContext = {
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
   cartQuantity: number;
+  cartSubTotal: () => number;
   cartItems: CartItem[];
 };
 
@@ -51,6 +53,17 @@ export const ShoppingCartProvider = ({
     (quantity, item) => item.quantity + quantity,
     0
   );
+
+  const cartSubTotal = () => {
+    let subTotal = 0;
+
+    cartItems.forEach((cartItem) => {
+      const storeItem = StoreItems.find((item) => item.id === cartItem.id);
+      subTotal += cartItem.quantity * (storeItem?.price || 0);
+    });
+
+    return subTotal;
+  };
 
   const openCart = () => {
     setIsOpen(true);
@@ -116,12 +129,13 @@ export const ShoppingCartProvider = ({
         removeFromCart,
         cartItems,
         cartQuantity,
+        cartSubTotal,
         openCart,
         closeCart,
       }}
     >
       {children}
-      <ShoppingCart isOpen={isOpen} />
+{/*       <ShoppingCart isOpen={isOpen} /> */}
     </ShoppingCartContext.Provider>
   );
 };

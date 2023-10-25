@@ -39,22 +39,21 @@ const StoreItem = ({ id, brand, product, price, imgUrl }: StoreItemProps) => {
         />
       </Link>
       <Card.Body className='d-flex flex-column'>
-        <Card.Title className='d-flex flex-column align-items-center mb-4 fs-6'>
+        <Card.Title className='d-flex flex-column mb-4 fs-6'>
           <div>
-            <Link
-              className='lh-sm text-center text-decoration-none'
-              to={`/store/${id}`}
-            >
+            <Link className='lh-sm text-decoration-none' to={`/store/${id}`}>
               <div>
                 <span className='text-dark'>{brand}</span>
               </div>
               <div>
-                <span className='text-black-50'>{product}</span>
+                <span className='fw-lighter text-muted'>{product}</span>
               </div>
             </Link>
           </div>
           <div className='mt-3'>
-            <span className='text-black-50'>{formatCurrency(price)}</span>
+            <span className='fw-lighter text-muted'>
+              {formatCurrency(price)}
+            </span>
           </div>
         </Card.Title>
       </Card.Body>
