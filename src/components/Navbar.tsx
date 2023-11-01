@@ -1,11 +1,17 @@
-import { Button, Container, Nav, Navbar as NavbarBs } from 'react-bootstrap';
+import {
+  Badge,
+  Button,
+  Container,
+  Nav,
+  Navbar as NavbarBs,
+} from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 
 const Navbar = () => {
-  const { openCart, cartQuantity } = useShoppingCart();
+  const { cartQuantity } = useShoppingCart();
   const navigate = useNavigate();
   return (
     <>
@@ -23,30 +29,25 @@ const Navbar = () => {
             </Nav.Link>
           </Nav>
           <Button
-            style={{ width: '3rem', height: '3rem', position: 'relative' }}
-            variant='outline-primary'
-            className='rounded-circle'
-            onClick={() => navigate('/cart')}
+            variant='link'
             disabled={cartQuantity === 0}
+            className='text-decoration-none'
+            onClick={() => navigate('/cart')}
           >
-            <FontAwesomeIcon icon={faCartShopping} />
-            {cartQuantity > 0 && (
-              <div
-                className='rounded-circle bg-danger d-flex justify-content-center align-items-center'
-                style={{
-                  color: 'white',
-                  width: '1.5rem',
-                  height: '1.5rem',
-                  position: 'absolute',
-                  bottom: 0,
-                  right: 0,
-                  transform: 'translate(25%, 25%)',
-                }}
-              >
-                {cartQuantity}
-              </div>
-            )}
+            Cart
+            <Badge pill bg='primary' className='ms-2'>
+              {cartQuantity}
+            </Badge>
+            <span className='visually-hidden'>cart items</span>
           </Button>
+
+          {/*           {
+            <h6>
+              <Badge pill bg='primary' className='shadow-lg'>
+                {cartQuantity}
+              </Badge>
+            </h6>
+          } */}
         </Container>
       </NavbarBs>
     </>

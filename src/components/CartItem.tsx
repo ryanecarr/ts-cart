@@ -1,10 +1,7 @@
-import { useState } from 'react';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import storeItems from '../data/items.json';
-import { Stack, Card } from 'react-bootstrap';
+import { Stack, Card, Button } from 'react-bootstrap';
 import formatCurrency from '../utilities/formatCurrency';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Quantity from './Quantity';
 
 type CartItemProps = {
@@ -13,11 +10,11 @@ type CartItemProps = {
 };
 
 const CartItem = ({ id, quantity }: CartItemProps) => {
-  const { removeFromCart, increaseCartQuantity, decreaseCartQuantity } =
+  const { removeFromCart, increaseCartQuantity, decreaseCartQuantity, getItemMeta } =
     useShoppingCart();
 
   const handleQuantityIncrease = () => {
-    increaseCartQuantity(id, 1);
+    increaseCartQuantity(id, 1, {});
   };
 
   const handleQuantityDecrease = () => {
@@ -25,6 +22,8 @@ const CartItem = ({ id, quantity }: CartItemProps) => {
   };
 
   const item = storeItems.find((item) => item.id === id);
+
+  const itemMeta = getItemMeta(id);
 
   if (item === null) return null;
 
@@ -36,8 +35,27 @@ const CartItem = ({ id, quantity }: CartItemProps) => {
             <img src={item?.imgUrl} style={{ height: '30px' }} />
           </div>
           <div className='me-auto' style={{ width: '40%' }}>
-            <div style={{ fontWeight: 'bold' }}>{item?.brand}</div>
+            <div className='fw-bold'>{item?.brand}</div>
             <div>{item?.product}</div>
+            <div style={{fontSize: '0.8rem'}} className='fw-light'>Size: {itemMeta?.size}</div>
+            <div>
+              <Button
+                size='sm'
+                variant='link'
+                className='ps-0 text-decoration-none'
+              >
+                Save for later
+              </Button>{' '}
+              |
+              <Button
+                size='sm'
+                variant='link'
+                className='text-decoration-none'
+                onClick={() => removeFromCart(id)}
+              >
+                Remove
+              </Button>
+            </div>
           </div>
           {/*           <div className='px-2 mx-auto'>{quantity > 1 ? quantity : '1'}</div> */}
           <Quantity

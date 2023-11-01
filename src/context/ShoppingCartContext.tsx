@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   ReactNode,
   createContext,
@@ -5,23 +6,28 @@ import {
   useState,
   useEffect,
 } from 'react';
-import ShoppingCart from '../components/ShoppingCart';
 import StoreItems from '../data/items.json';
 
 type ShoppingCartProviderProps = {
   children: ReactNode;
 };
 
+type MetaObject = {
+  size: string;
+  color: string;
+  width: string;
+};
+
 type CartItem = {
   id: number;
   quantity: number;
+  meta: MetaObject;
 };
 
 type ShoppingCartContext = {
-  openCart: () => void;
-  closeCart: () => void;
   getItemQuantity: (id: number) => number;
-  increaseCartQuantity: (id: number, qty: number) => void;
+  getItemMeta: (id: number) => MetaObject;
+  increaseCartQuantity: (id: number, qty: number, meta: object) => void;
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
   cartQuantity: number;
@@ -38,7 +44,6 @@ export const useShoppingCart = () => {
 export const ShoppingCartProvider = ({
   children,
 }: ShoppingCartProviderProps) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
     let cart;
     try {
@@ -65,22 +70,18 @@ export const ShoppingCartProvider = ({
     return subTotal;
   };
 
-  const openCart = () => {
-    setIsOpen(true);
-  };
-
-  const closeCart = () => {
-    setIsOpen(false);
-  };
-
   const getItemQuantity = (id: number) => {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   };
 
-  const increaseCartQuantity = (id: number, qty: number) => {
+  const getItemMeta = (id: number) => {
+    return cartItems.find((item) => item.id === id)?.meta || {};
+  };
+
+  const increaseCartQuantity = (id: number, qty: number, meta: object) => {
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id) == null) {
-        return [...currItems, { id, quantity: qty }];
+        return [...currItems, { id, quantity: qty, meta }];
       } else {
         return currItems.map((item) => {
           if (item.id === id) {
@@ -124,18 +125,16 @@ export const ShoppingCartProvider = ({
     <ShoppingCartContext.Provider
       value={{
         getItemQuantity,
+        getItemMeta,
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart,
         cartItems,
         cartQuantity,
         cartSubTotal,
-        openCart,
-        closeCart,
       }}
     >
       {children}
-{/*       <ShoppingCart isOpen={isOpen} /> */}
     </ShoppingCartContext.Provider>
   );
 };

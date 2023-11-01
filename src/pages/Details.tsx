@@ -48,6 +48,14 @@ const Details = () => {
     };
   };
 
+  const getItemMeta = () => {
+    return {
+        size: selectedSize,
+        color: null,
+        width: null,
+    }
+  }
+
   // const quantity = getItemQuantity(Number(item.id));
 
   return (
@@ -104,7 +112,7 @@ const Details = () => {
               <Button
                 className='w-100 btn-sm mt-3'
                 onClick={() => {
-                  increaseCartQuantity(item.id, qty);
+                  increaseCartQuantity(item.id, qty, getItemMeta());
                   setShowItemAddedModal(true);
                 }}
                 disabled={selectedSize && qty ? false : true}
