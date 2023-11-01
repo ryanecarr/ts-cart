@@ -1,30 +1,83 @@
 [
   {
     "id": 1,
-    "brand": "HOKA ONE ONE",
+    "brand": "HOKA",
     "product": "Speedgoat 5 Trail-Running Shoes",
+    "description": "Grippy. Cushioned. Trailblazer. Technical trail workhorses, the men's HOKA Speedgoat 5 trail-running shoes improve on their predecessors with less weight and more traction than ever before.",
     "price": 155,
-    "imgUrl": "https://www.rei.com/media/79594e10-1097-4df8-8e15-1683ba7c8765.jpg"
+    "size": [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+    "imgUrl": "https://www.rei.com/media/79594e10-1097-4df8-8e15-1683ba7c8765.jpg?size=784x588"
   },
   {
     "id": 2,
-    "brand": "Salomon",
-    "product": "Active Skin 8 Hydration Vest",
-    "price": 110,
-    "imgUrl": "https://www.rei.com/media/938a94dc-6d6c-43f6-9078-548dc83d464f.jpg"
+    "brand": "HOKA",
+    "product": "HOKA Challenger 7 Trail-Running Shoes",
+    "description": "Road performance meets versatile trail traction in the HOKA Challenger 7 men's trail-running shoes. Sporting updated materials from the ground up, they're lighter than the previous iteration.",
+    "price": 145,
+    "size": [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+    "imgUrl": "https://www.rei.com/media/fc750df7-cb26-4427-bfef-0886cf31ae9c.jpg?size=784x588"
   },
   {
     "id": 3,
-    "brand": "Injinji",
-    "product": "Trail Midweight Crew Socks",
-    "price": 17,
-    "imgUrl": "https://www.rei.com/media/07f6e9aa-5507-422a-9933-b257e9e67fb8.jpg"
+    "brand": "HOKA",
+    "product": "HOKA Torrent 3 Trail-Running Shoes",
+    "description": "Built for lightweight performance, the men's HOKA Torrent 3 trail-running shoes are everything you love about the Torrent 2, just amplified—and they have stripped-back uppers for more breathability.",
+    "price": 130,
+    "size": [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+    "imgUrl": "https://www.rei.com/media/95918cc7-c512-4c6f-abf4-96aa0c1004dc.jpg?size=784x588"
   },
   {
     "id": 4,
-    "brand": "Garmin",
-    "product": "Forerunner 265",
-    "price": 450,
-    "imgUrl": "https://www.rei.com/media/89cc3e3e-f172-43d6-a566-d6a4e3380387.jpg"
+    "brand": "Altra",
+    "product": "Altra Torin 7 Road-Running Shoes",
+    "description": "Looking for shoes that can keep up with you mile after mile? The men's Altra Torin 7 road-running shoes are lightweight, cushioned and engineered to go the distance with you on every run.",
+    "price": 150,
+    "size": [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+    "imgUrl": "https://www.rei.com/media/37030f89-f28e-4be9-b821-bc05bf72ca5b.jpg?size=784x588"
+  },
+  {
+    "id": 5,
+    "brand": "Altra",
+    "product": "Altra Olympus 5 Hike Low GTX Hiking Shoes",
+    "description": "Whether you're out for the day, doing an overnighter or attempting a thru-hike, the men's Altra Olympus 5 Hike Low GTX hiking shoes are up for the adventure with their waterproof construction.",
+    "price": 200,
+    "size": [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+    "imgUrl": "https://www.rei.com/media/a12354d3-45fd-4943-82a1-4bcc0f30c827.jpg?size=784x588"
+  },
+  {
+    "id": 6,
+    "brand": "Altra",
+    "product": "Altra Mont Blanc Trail-Running Shoes",
+    "description": "Inspired by the highest mountain in the Alps, the men's Altra Mont Blanc trail-running shoes feature max cushion that's designed for long, hard trail runs.",
+    "price": 180,
+    "size": [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+    "imgUrl": "https://www.rei.com/media/b599f34d-8c46-4732-bcf3-34c26a2ba9f3.jpg?size=784x588"
+  },
+  {
+    "id": 7,
+    "brand": "Salomon",
+    "product": "Salomon Speedcross 5 Trail-Running Shoes",
+    "description": "Even more grip. Even more stability. Even more dynamic uppers. The Salomon Speedcross 5 trail-running shoes for men take rugged off-road performance to another level.",
+    "price": 130,
+    "size": [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+    "imgUrl": "https://www.rei.com/media/46c1dbb1-c261-4c5e-a831-88fa86bc8b0b.jpg?size=784x588"
+  },
+  {
+    "id": 8,
+    "brand": "Salomon",
+    "product": "Salomon Sense Ride 4 Trail-Running Shoes",
+    "description": "You'll be ready to take off on new adventures, near and far, in these Salomon Sense Ride 4 trail-running shoes. They are comfy and responsive, and built with the soft Optivibe™ cushioning you love.",
+    "price": 120,
+    "size": [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+    "imgUrl": "https://www.rei.com/media/34fc1129-0f9b-459f-bd74-ce8e30e4bd6e.jpg?size=784x588"
+  },
+  {
+    "id": 9,
+    "brand": "Salomon",
+    "product": "Salomon Thundercross Trail-Running Shoes",
+    "description": "Take on rugged trails with mud, slick roots and loose rocks in the men's Salomon Thundercross trail-running shoes. They're built to create a smooth ride so you can confidently cruise through runs.",
+    "price": 140,
+    "size": [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+    "imgUrl": "https://www.rei.com/media/65b4a242-8576-4ff2-9528-506f138c40cf.jpg?size=784x588"
   }
 ]
